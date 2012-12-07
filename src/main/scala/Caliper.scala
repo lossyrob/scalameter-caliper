@@ -1,4 +1,4 @@
-package scalpel
+package scalametercaliper
 
 import com.google.caliper.Benchmark
 import com.google.caliper.Param
@@ -17,7 +17,7 @@ object TestCaliper {
                                        "--runMillis", "1000", 
                                        "--measurementType", "TIME", 
                                        "--marker", "//ZxJ/", 
-                                       "scalpel.Benchmarks")
+                                       "scalametercaliper.Benchmarks")
       new Runner().run(default_args:_*)
       System.exit(0) // user code may have leave non-daemon threads behind!
     } catch {

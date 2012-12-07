@@ -1,4 +1,4 @@
-//package scalpel
+package scalametercaliper
 
 import org.scalameter.api._
 
