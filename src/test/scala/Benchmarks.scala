@@ -49,5 +49,30 @@ object LoopBenchmark extends PerformanceTest.Quickbenchmark {
       }
     }
   }
+
+  performance of ("for loop") in {
+    measure method "int array" in {
+      using(Gen.single("ints")(ints)) in { ints =>
+        val goal = ints.clone
+        val len = goal.length
+        for(i <- 0 to len - 1) {
+          val z = goal(i)
+          if (z != Int.MinValue) goal(i) = z * 2
+        }
+      }
+    }
+
+    measure method "double array" in {
+      using(Gen.single("doubles")(doubles)) in { doubles =>
+        val goal = doubles.clone
+        var i = 0
+        val len = goal.length
+        for(i <- 0 to len - 1) {
+          val z = goal(i)
+          if (z != Double.NaN) goal(i) = z * 2.0
+        }
+      }
+    }
+  }
 }
 

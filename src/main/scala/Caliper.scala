@@ -70,7 +70,6 @@ class Benchmarks extends SimpleBenchmark {
       if (z != Int.MinValue) goal(i) = z * 2
       i += 1
     }
-    goal
   }
   
   def timeDoubleArrayWhileLoop(reps:Int) = run(reps)(doubleArrayWhileLoop)
@@ -83,7 +82,35 @@ class Benchmarks extends SimpleBenchmark {
       if (z != Double.NaN) goal(i) = z * 2.0
       i += 1
     }
-    goal
+  }
+
+  def timeIntArrayForLoop(reps:Int) = run(reps)(intArrayForLoop)
+  def intArrayForLoop = {
+  val goal = ints.clone
+    val len = goal.length
+    for(i <- 0 to ints.length-1) {
+      val z = goal(i)
+      if (z != Int.MinValue) goal(i) = z * 2
+    }
+  }
+
+  def timeDoubleArrayForLoop(reps:Int) = run(reps)(doubleArrayForLoop)
+  def doubleArrayForLoop = {
+  val goal = doubles.clone
+    val len = goal.length
+    for(i <- 0 to doubles.length-1) {
+      val z = goal(i)
+      if (z != Double.MinValue) goal(i) = z * 2.0
+    }
+  }
+
+  def timefibonacci(reps:Int) = run(reps)(fibonacci(40))
+  def fibonacci(n:Int):Unit = {
+    if (n < 0) throw new IllegalArgumentException("n = " + n + " < 0")
+    def _f(x:Int):Int = {
+      if (x <= 1) n else { _f(x - 1) + _f(x - 2) }
+    }
+    _f(n)
   }
 }
 
