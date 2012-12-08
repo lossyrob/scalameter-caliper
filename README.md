@@ -4,6 +4,6 @@ In sbt console,
 
 To run caplier benchmarks:  ```run```
 
-To run scalameter benchmarsk: ```test```
+To run scalameter benchmarks: ```test```
 
 *Please add more benchmarks!*
