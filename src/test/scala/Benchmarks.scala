@@ -4,7 +4,16 @@ import org.scalameter.api._
 
 import scala.util.Random
 
-object LoopBenchmark extends PerformanceTest.Quickbenchmark {
+object LoopBenchmark extends PerformanceTest {
+
+  /* configuration */
+
+  lazy val executor = SeparateJvmsExecutor(new Executor.Warmer.Default, Aggregator.min, new Measurer.Default)
+  lazy val reporter = new LoggingReporter
+  lazy val persistor = Persistor.None
+
+  /* Input */
+
   val size = 1000
   var ints:Array[Int] = null
   var doubles:Array[Double] = null
@@ -21,6 +30,8 @@ object LoopBenchmark extends PerformanceTest.Quickbenchmark {
   val len = size * size
   ints = init(len)(Random.nextInt)
   doubles = init(len)(Random.nextDouble)
+
+  /* Test */
 
   performance of "while loop" in {
     measure method "int array" in {
